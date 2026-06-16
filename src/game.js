@@ -21,6 +21,8 @@ const player = { mode: 'car', x: 620, y: 760, angle: -0.1, speed: 0, footX: 0, f
 const progress = { level: 1, xp: 0, completedJobs: 0, deliveredPallets: 0, message: 'Fahre oder laufe zum gelben Depot und drücke E.' };
 let trailer = { axles: 2, cargo: 0 };
 let job = null;
+const logoImage = new Image();
+logoImage.src = 'assets/logo.svg';
 
 function has(k) { return keys.has(k); }
 function clamp(v, min, max) { return Math.max(min, Math.min(max, v)); }
@@ -198,9 +200,31 @@ function drawCar() {
   ctx.fillRect(-20, -25, 44, 50);
   ctx.fillStyle = '#101820';
   ctx.fillRect(30, -31, 18, 8); ctx.fillRect(30, 23, 18, 8);
-  ctx.fillStyle = '#e9f1f7';
-  ctx.font = 'bold 13px sans-serif';
-  ctx.fillText('RIN', -52, 5);
+  drawBrandMark(-45, 0, 28, '#e9f1f7');
+  ctx.restore();
+}
+
+
+function drawBrandMark(x, y, size, background = '#ffffff') {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.fillStyle = background;
+  ctx.beginPath();
+  ctx.arc(0, 0, size * 0.56, 0, Math.PI * 2);
+  ctx.fill();
+  if (logoImage.complete && logoImage.naturalWidth > 0) {
+    ctx.drawImage(logoImage, -size / 2, -size / 2, size, size);
+  } else {
+    ctx.strokeStyle = '#050505';
+    ctx.lineWidth = Math.max(4, size * 0.12);
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    ctx.arc(0, 0, size * 0.36, Math.PI * 0.18, Math.PI * 1.72);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(size * 0.08, size * 0.04, size * 0.28, Math.PI * 0.2, Math.PI * 0.82);
+    ctx.stroke();
+  }
   ctx.restore();
 }
 
@@ -214,6 +238,7 @@ function drawTrailer() {
   ctx.fillRect(-70, -32, 120, 64);
   ctx.fillStyle = '#b78c52';
   for (let i = 0; i < trailer.cargo; i++) ctx.fillRect(-58 + i * 22, -18, 16, 36);
+  drawBrandMark(30, 0, 30, '#f3ead7');
   ctx.fillStyle = '#111';
   const axleXs = trailer.axles === 3 ? [-35, 0, 35] : [-25, 25];
   axleXs.forEach((x) => { ctx.fillRect(x, -42, 18, 10); ctx.fillRect(x, 32, 18, 10); });

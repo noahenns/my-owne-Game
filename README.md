@@ -2,7 +2,7 @@
 
 Ein kleines Desktop-/Browser-Spiel, inspiriert von Fernfahrer- und Landwirtschafts-Simulatoren: Du fährst **Autos mit Anhänger** statt LKW, steigst aus dem Wagen aus, nimmst Paletten-Aufträge an und schaltest später größere Anhänger frei.
 
-> Hinweis: Der Projektname, Fahrzeuge und Logos sind eigenständig. Lege dein eigenes Auto-Logo als `assets/logo.png` ab, wenn du es im Spiel verwenden möchtest.
+> Hinweis: Der Projektname und die Fahrzeuge sind eigenständig. Das mitgelieferte Markenzeichnen liegt als `assets/logo.svg` vor und wird im Spiel auf Auto und Anhänger angezeigt.
 
 ## Features
 
@@ -13,6 +13,7 @@ Ein kleines Desktop-/Browser-Spiel, inspiriert von Fernfahrer- und Landwirtschaf
 - 3-Achs-Anhänger ab Level 10 freischaltbar.
 - Paletten-Aufträge mit Fortschrittssystem: ungefähr 2-3 Aufträge mit je 5 Paletten bringen ein Viertel Level.
 - Erste Fahrzeugklasse orientiert sich optisch an einem älteren kantigen Kombi, spätere Fahrzeuge können ergänzt werden.
+- Eigenes handgezeichnetes Markenzeichnen auf Auto und Anhänger.
 - GitHub-tauglich: einfach herunterladen und `index.html` öffnen.
 
 ## Spielen
@@ -56,4 +57,4 @@ Dann `http://localhost:8080` öffnen.
 
 ## Ziel des Prototyps
 
-Dieser Stand ist ein spielbarer Prototyp. Er enthält bewusst keine geschützten Marken, keine echten Fahrzeugmodelle und kein Euro-Truck-/Real-Truck-Material. Er ist als Grundlage gedacht, um später eigene Karten, Sounds, Menüs, Fahrzeuge und dein eigenes Logo zu ergänzen.
+Dieser Stand ist ein spielbarer Prototyp. Er enthält bewusst keine geschützten Marken, keine echten Fahrzeugmodelle und kein Euro-Truck-/Real-Truck-Material. Er ist als Grundlage gedacht, um später eigene Karten, Sounds, Menüs und Fahrzeuge zu ergänzen.
