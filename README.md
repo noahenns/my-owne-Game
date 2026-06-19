@@ -6,14 +6,15 @@ Ein kleines Desktop-/Browser-Spiel, inspiriert von Fernfahrer- und Landwirtschaf
 
 ## Features
 
-- Fahrbares Auto mit Anhänger im Canvas-Spiel.
+- Fahrbares Auto mit Anhänger und Simulations-Fahrphysik (Masse, Luftwiderstand, Rollwiderstand, Gänge, Bremsentemperatur, Traktion/ABS-Anzeige).
 - Ein-/Aussteigen am Fahrzeug wie in Simulatoren: zu Fuß zur Tür gehen und einsteigen.
 - Tastatursteuerung und Gamepad-/PS-Lenkrad-Unterstützung über die Browser Gamepad API.
 - 2-Achs-Anhänger ab Level 1 verfügbar.
 - 3-Achs-Anhänger ab Level 10 freischaltbar.
 - Paletten-Aufträge mit Fortschrittssystem: ungefähr 2-3 Aufträge mit je 5 Paletten bringen ein Viertel Level.
 - Erste Fahrzeugklasse orientiert sich optisch an einem älteren kantigen Kombi, spätere Fahrzeuge können ergänzt werden.
-- Eigenes handgezeichnetes Markenzeichnen auf Auto und Anhänger.
+- Detaillierte First-Person-Cockpitperspektive mit Dashboard, Instrumenten, A-Säulen, Motorhaube und großem Markenlogo auf dem Lenkrad.
+- Realistisches Branding-Konzept: Das fiktive ORION-Emblem sitzt prominent auf Lenkrad und Motorhaube, zusätzlich auf Anhänger und Karosserie.
 - Firmenname wird beim Spielstart gewählt und als Aufschrift auf den Anhänger gemalt.
 - GitHub-tauglich: einfach herunterladen und `index.html` öffnen.
 
@@ -40,6 +41,9 @@ Dann `http://localhost:8080` öffnen.
 | Bremse/Rückwärts | `S` / `Pfeil runter` |
 | Lenken | `A`/`D` oder Pfeile links/rechts |
 | Aussteigen | `E` nahe Stillstand |
+| Kamera wechseln | `C` Cockpit/außen |
+| Hochschalten/Runterschalten | `R`/`Q` während der Fahrt |
+| Feststell-/Zusatzbremse | `Leertaste` |
 | Anhänger wechseln | `1` = 2 Achsen, `2` = 3 Achsen ab Level 10 |
 
 ### Zu Fuß
@@ -59,4 +63,4 @@ Dann `http://localhost:8080` öffnen.
 
 ## Ziel des Prototyps
 
-Dieser Stand ist ein spielbarer Prototyp. Er enthält bewusst keine geschützten Marken, keine echten Fahrzeugmodelle und kein Euro-Truck-/Real-Truck-Material. Er ist als Grundlage gedacht, um später eigene Karten, Sounds, Menüs und Fahrzeuge zu ergänzen.
+Dieser Stand ist ein hochwertigeres Code-Grundgerüst für eine realistische Fahrzeug-Simulation mit Innenansicht, Markenidentität und erweiterbarer Fahrphysik. Er enthält bewusst keine geschützten Marken, keine echten Fahrzeugmodelle und kein Euro-Truck-/Real-Truck-Material. Er ist als Grundlage gedacht, um später eigene Karten, Sounds, Menüs und Fahrzeuge zu ergänzen.
