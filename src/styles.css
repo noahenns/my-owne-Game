@@ -28,71 +28,12 @@ body {
   box-shadow: 0 24px 80px rgba(0,0,0,.45);
 }
 
-.game-stage {
-  position: relative;
-}
-
 canvas {
   display: block;
   width: 100%;
   height: auto;
   image-rendering: auto;
   background: #203024;
-}
-
-.start-panel {
-  position: absolute;
-  inset: 50% auto auto 50%;
-  transform: translate(-50%, -50%);
-  width: min(92%, 430px);
-  padding: 26px;
-  border: 1px solid rgba(255,255,255,.2);
-  border-radius: 18px;
-  background: rgba(9, 16, 24, .92);
-  box-shadow: 0 20px 70px rgba(0,0,0,.55);
-}
-
-.start-panel.is-hidden {
-  display: none;
-}
-
-.start-panel h1 {
-  margin: 0 0 10px;
-  font-size: clamp(1.7rem, 4vw, 2.4rem);
-}
-
-.start-panel p {
-  margin: 0 0 18px;
-  color: #c8d7e0;
-}
-
-.start-panel label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 700;
-}
-
-.start-panel input {
-  width: 100%;
-  padding: 12px 14px;
-  border: 1px solid rgba(255,255,255,.18);
-  border-radius: 10px;
-  background: #eef4f8;
-  color: #101820;
-  font: inherit;
-}
-
-.start-panel button {
-  width: 100%;
-  margin-top: 16px;
-  padding: 12px 14px;
-  border: 0;
-  border-radius: 10px;
-  background: #f5c542;
-  color: #101820;
-  font: inherit;
-  font-weight: 800;
-  cursor: pointer;
 }
 
 .hint {
