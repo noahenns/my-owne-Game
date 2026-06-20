@@ -1,0 +1,90 @@
+name: Release Game
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Get Release Info
+        id: release-info
+        run: |
+          TAG_NAME=${GITHUB_REF#refs/tags/}
+          echo "::set-output name=tag::$TAG_NAME"
+          echo "Release tag: $TAG_NAME"
+
+      - name: Download Windows Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: TruckSimulator-Windows
+          path: ./build-windows
+
+      - name: Download Linux Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: TruckSimulator-Linux
+          path: ./build-linux
+
+      - name: Download macOS Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: TruckSimulator-macOS
+          path: ./build-macos
+
+      - name: Package Builds
+        run: |
+          # Create archives for distribution
+          mkdir -p ./release-artifacts
+          
+          if [ -d "build-windows" ]; then
+            cd build-windows
+            zip -r ../release-artifacts/TruckSimulator-Windows.zip .
+            cd ..
+          fi
+          
+          if [ -d "build-linux" ]; then
+            cd build-linux
+            tar czf ../release-artifacts/TruckSimulator-Linux.tar.gz .
+            cd ..
+          fi
+          
+          if [ -d "build-macos" ]; then
+            cd build-macos
+            zip -r ../release-artifacts/TruckSimulator-macOS.zip .
+            cd ..
+          fi
+
+      - name: Generate Changelog
+        id: changelog
+        run: |
+          # Generate changelog from git history
+          PREV_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+          if [ -z "$PREV_TAG" ]; then
+            git log --oneline --pretty=format:"- %h: %s" > CHANGELOG.md
+          else
+            git log ${PREV_TAG}..HEAD --oneline --pretty=format:"- %h: %s" > CHANGELOG.md
+          fi
+          cat CHANGELOG.md
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.release-info.outputs.tag }}
+          name: Release ${{ steps.release-info.outputs.tag }}
+          body_path: CHANGELOG.md
+          files: release-artifacts/*
+          draft: false
+          prerelease: ${{ contains(steps.release-info.outputs.tag, 'alpha') || contains(steps.release-info.outputs.tag, 'beta') }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Release Complete
+        run: |
+          echo "Release ${{ steps.release-info.outputs.tag }} created successfully!"

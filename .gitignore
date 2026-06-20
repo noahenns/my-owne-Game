@@ -1,0 +1,91 @@
+# Unreal Engine .gitignore
+# Reference: https://github.com/EpicGames/UnrealEngine/blob/master/.gitignore
+
+# Compiled binaries/intermediates
+Binaries/
+Intermediate/
+Saved/
+
+# Generated build files
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+
+# Platform-specific builds
+Build/
+Packages/
+DerivedDataCache/
+
+# IDE files
+.vs/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+.project
+.cproject
+
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# OS files
+Thumbs.db
+.DS_Store
+ehthumbs.db
+
+# Third-party content (marketplace plugins, large assets)
+Plugins/Marketplace/
+Plugins/EnginePlugins/
+Content/Marketplace/
+
+# Temporary files
+*.tmp
+*.bak
+*.backup
+
+# Editor crashes
+Crashes/
+
+# Test results
+Test Results/
+
+# Node modules (if using web tools)
+node_modules/
+npm-debug.log
+
+# Generated documentation
+Docs/Generated/
+
+# Local development overrides
+.env.local
+.env.*.local
+local.settings.json
+
+# macOS
+*.app/
+
+# Linux
+*.o
+*.a
+*.so
+
+# Windows
+*.exe
+*.dll
+*.lib
+*.pdb
+
+# Visual Studio Code
+.vscode/settings.json
+.vscode/launch.json
+.vscode/extensions.json
+
+# Keep these directories (for content)
+!Content/
+!Plugins/Custom/
+

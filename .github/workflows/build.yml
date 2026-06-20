@@ -1,0 +1,102 @@
+name: Build UE5 Game
+
+on:
+  push:
+    branches: [ main, develop ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Full history for changelog generation
+
+      - name: Setup Unreal Engine
+        run: |
+          # This step assumes Unreal Engine 5.3 is available on the runner
+          # For GitHub-hosted runners, we use a pre-configured image
+          echo "Unreal Engine setup step"
+
+      - name: Generate Project Files
+        run: |
+          cd ${{ github.workspace }}
+          .\GenerateProjectFiles.bat
+
+      - name: Build Project (Windows x64)
+        run: |
+          # Build command for Windows - requires UE5 build tools
+          echo "Building Windows target..."
+          # Actual build command would go here
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: TruckSimulator-Windows
+          path: Saved/StagedBuilds/WindowsNoEditor/
+          retention-days: 5
+
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Linux Build Tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential \
+            clang \
+            libgl1-mesa-dev
+
+      - name: Build Project (Linux x64)
+        run: |
+          echo "Building Linux target..."
+          # Linux build command would go here
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: TruckSimulator-Linux
+          path: Saved/StagedBuilds/Linux/
+          retention-days: 5
+
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Xcode
+        run: |
+          sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+
+      - name: Build Project (macOS)
+        run: |
+          echo "Building macOS target..."
+          # macOS build command would go here
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: TruckSimulator-macOS
+          path: Saved/StagedBuilds/Mac/
+          retention-days: 5
+
+  validate:
+    runs-on: ubuntu-latest
+    needs: [build-windows, build-linux, build-macos]
+    if: always()
+    steps:
+      - name: Check build status
+        run: |
+          echo "All platform builds completed"
+          echo "Status: Windows=${{ needs.build-windows.result }}"
+          echo "Status: Linux=${{ needs.build-linux.result }}"
+          echo "Status: macOS=${{ needs.build-macos.result }}"
